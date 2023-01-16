@@ -10,7 +10,7 @@ const state = ref({
 
 function imprimirTabla(event) {
   console.log(this.state.datos);
-  this.state.datos.push(event);
+  this.state.datos.push( JSON.parse(JSON.stringify(event)));
 }
 
 </script>

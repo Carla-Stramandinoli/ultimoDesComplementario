@@ -22,7 +22,7 @@ const v$ = useVuelidate(rules, state);
 
 function validarFormulario() {
     let validate = this.v$.$validate();
-    let thisCompenenet = this;
+    let thisComponent = this;
     console.log(this.state)
     validate.then(function (result) {
         console.log(result);
@@ -31,9 +31,9 @@ function validarFormulario() {
             return;
         }
         console.log('validarFormulario');
-        emit("enviar", thisCompenenet.state);
-        thisCompenenet.v$.$reset();
-    })
+        emit("enviar",thisComponent.state);
+        // setTimeout(() => { thisComponent.v$.$reset() }, 1000)
+        })
 };
 
 </script>
@@ -43,7 +43,7 @@ function validarFormulario() {
         <v-container id="formulario">
             <v-row align="center" justify="center">
                 <v-col cols="8">
-                    <v-text-field v-model="v$.name.$model" @blur="v$.name.$touch" label="Name" placeholder="Pepe">
+                    <v-text-field v-model="v$.name.$model"  @blur="v$.name.$touch" label="Name" placeholder="Pepe">
                     </v-text-field>
                     <div class="div-error" :rules="name" v-for="(error, index) of v$.name.$errors" :key="index">{{
                         error.$message
@@ -83,7 +83,7 @@ function validarFormulario() {
                 <v-btn @click="validarFormulario()" class="ma-2" outlined color="indigo">
                     Submit
                 </v-btn>
-                <v-btn type="reset">reset</v-btn>
+                <v-btn type="reset">Reset</v-btn>
             </div>
         </v-container>
     </v-form>
